@@ -19,7 +19,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Users")
-
 public class User {
 
     @Id

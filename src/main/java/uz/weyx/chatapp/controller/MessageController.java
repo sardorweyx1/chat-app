@@ -38,16 +38,11 @@ public class MessageController {
     }
 
     @PostMapping("/upload/photo")
-    public ResponseEntity<?> savePhoto(@ModelAttribute MessageDto messageDto) throws IOException {
-        String success = messageService.savePhoto(messageDto);
+    public ResponseEntity<?> save(@RequestBody MessageDto messageDto) throws IOException {
+        String success = messageService.save(messageDto);
         return ResponseEntity.ok(success);
     }
 
-    @PostMapping("/upload/text")
-    public ResponseEntity<?> saveText(@RequestBody MessageDto messageDto) {
-        String success = messageService.saveText(messageDto);
-        return ResponseEntity.ok(success);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> edit(@PathVariable Long id,

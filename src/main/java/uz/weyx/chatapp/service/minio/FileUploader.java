@@ -6,9 +6,12 @@ import io.minio.http.Method;
 import org.apache.commons.compress.utils.FileNameUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import uz.weyx.chatapp.entity.Ext;
+import uz.weyx.chatapp.service.payload.MessageDto;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +36,7 @@ public class FileUploader {
     }
 
 
-    public void upload(String objectName, MultipartFile file) {
+    public void upload(String objectName, InputStream inputStream, MessageDto messageDto) {
         try {
             boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(BUCKET_NAME).build());
             if (!found) {
@@ -44,14 +47,14 @@ public class FileUploader {
             minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(BUCKET_NAME)
-                            .object(objectName + "." + FileNameUtils.getExtension(file.getOriginalFilename()))
+                            .object(objectName + "." + messageDto.getExt())
                             .stream(
-                                    file.getInputStream(), file.getSize(), -1)
-                            .contentType(file.getContentType())
+                                    inputStream,inputStream.available(),-1)
+                            .contentType(Ext.getValue(messageDto.getExt()))
                             .build());
 
             System.out.printf("'%s' is successfully uploaded as "
-                    + " to bucket '%s'.%n", file.getName(), BUCKET_NAME);
+                    + " to bucket '%s'.%n", messageDto.getContent(), BUCKET_NAME);
         } catch (MinioException minioException) {
             System.out.println(minioException.getMessage());
         } catch (IOException | NoSuchAlgorithmException | InvalidKeyException e) {

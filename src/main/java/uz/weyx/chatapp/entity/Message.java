@@ -32,10 +32,7 @@ public class Message {
     @Enumerated(EnumType.STRING)
     public MessageType contentType;
 
-    //if message is photo
-    private String objectName;
-
-    private String messageText;
+    private String content;
 
     @Column(updatable = false, nullable = false)
     @CreationTimestamp

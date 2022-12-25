@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
@@ -22,8 +23,8 @@ public class MessageDto {
 
     private String type;
 
-    private MultipartFile file;
-
     private String content;
+
+    private String ext;
 
 }

@@ -15,4 +15,6 @@ public class UrlDto {
     private Long userId;
 
     private String message;
+
+    private String ext;
 }
