@@ -3,9 +3,7 @@ package uz.weyx.chatapp.service.minio;
 import io.minio.*;
 import io.minio.errors.MinioException;
 import io.minio.http.Method;
-import org.apache.commons.compress.utils.FileNameUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 import uz.weyx.chatapp.entity.Ext;
 import uz.weyx.chatapp.service.payload.MessageDto;
 
