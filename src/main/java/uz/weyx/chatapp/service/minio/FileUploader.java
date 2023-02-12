@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class FileUploader {
     public static final String ACCESS_KEY = "5BXPmkOpjXXxH2PZ";
     public static final String SECRET_KEY = "JBoIzp2DyEgaFPhg1nhoWUOdCjG8Rees";
-    public static final String ENDPOINT = "http://localhost:9000";
+    public static final String ENDPOINT = "http://minio:9000";
     public static final String BUCKET_NAME = "app-chat";
 
     private MinioClient minioClient;
